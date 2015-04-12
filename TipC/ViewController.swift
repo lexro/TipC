@@ -17,8 +17,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
-        
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
     }
@@ -29,12 +29,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingChanged(sender: AnyObject) {
-        var tipPercentages = [0.18, 0.2, 0.22]
-        var tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        let tipPercentages = [0.18, 0.2, 0.22]
+        let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         
-        var billAmount = billField.text._bridgeToObjectiveC().doubleValue
-        var tip = billAmount * tipPercentage
-        var totalAmount = billAmount + tip
+        let billAmount = billField.text._bridgeToObjectiveC().doubleValue
+        let tip = billAmount * tipPercentage
+        let totalAmount = billAmount + tip
         
         tipLabel.text = "$\(tip)"
         totalLabel.text = "$\(totalAmount)"
@@ -45,6 +45,14 @@ class ViewController: UIViewController {
 
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultTip = defaults.integerForKey("default_tip")
+        tipControl.selectedSegmentIndex = defaultTip
+        tipControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
 }
 

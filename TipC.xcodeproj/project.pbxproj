@@ -13,6 +13,7 @@
 		AF25BED81ADADB8A006A49B3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF25BED71ADADB8A006A49B3 /* Images.xcassets */; };
 		AF25BEDB1ADADB8A006A49B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF25BED91ADADB8A006A49B3 /* LaunchScreen.xib */; };
 		AF25BEE71ADADB8A006A49B3 /* TipCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25BEE61ADADB8A006A49B3 /* TipCTests.swift */; };
+		AF25D17F1ADB1A03009A72DE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25D17E1ADB1A03009A72DE /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		AF25BEE01ADADB8A006A49B3 /* TipCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF25BEE51ADADB8A006A49B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF25BEE61ADADB8A006A49B3 /* TipCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCTests.swift; sourceTree = "<group>"; };
+		AF25D17E1ADB1A03009A72DE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		AF25BECD1ADADB8A006A49B3 /* TipC */ = {
 			isa = PBXGroup;
 			children = (
+				AF25D17B1ADB10FA009A72DE /* View Controllers */,
 				AF25BED01ADADB8A006A49B3 /* AppDelegate.swift */,
 				AF25BED21ADADB8A006A49B3 /* ViewController.swift */,
 				AF25BED41ADADB8A006A49B3 /* Main.storyboard */,
@@ -110,6 +113,14 @@
 				AF25BEE51ADADB8A006A49B3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF25D17B1ADB10FA009A72DE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF25D17E1ADB1A03009A72DE /* SettingsViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 			files = (
 				AF25BED31ADADB8A006A49B3 /* ViewController.swift in Sources */,
 				AF25BED11ADADB8A006A49B3 /* AppDelegate.swift in Sources */,
+				AF25D17F1ADB1A03009A72DE /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +425,7 @@
 				AF25BEEC1ADADB8A006A49B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF25BEED1ADADB8A006A49B3 /* Build configuration list for PBXNativeTarget "TipCTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +434,7 @@
 				AF25BEEF1ADADB8A006A49B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
