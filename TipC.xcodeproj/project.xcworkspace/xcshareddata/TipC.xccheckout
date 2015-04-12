@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>2C42F599-F856-46FF-A2DE-371A01386407</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>TipC</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>50A74C6C6CA2E5DD48EFBBFD63B01BBBC44E5040</key>
 		<string>https://github.com/lexro/TipC.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TipC.xcodeproj/project.xcworkspace</string>
+	<string>TipC.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>50A74C6C6CA2E5DD48EFBBFD63B01BBBC44E5040</key>

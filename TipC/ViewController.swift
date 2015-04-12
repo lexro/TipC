@@ -54,5 +54,10 @@ class ViewController: UIViewController {
         tipControl.selectedSegmentIndex = defaultTip
         tipControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        billField.becomeFirstResponder()
+    }
 }
 
