@@ -15,12 +15,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
 
+    let TEN_MINUTES = 600.0; //seconds
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let billAmountTime = (NSDate().timeIntervalSince1970 as Double) - defaults.doubleForKey("bill_amount_time")
+        let billAmount = defaults.objectForKey("bill_amount") as? String
+
+        if (billAmountTime < TEN_MINUTES) {
+            billField.text = billAmount
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +68,15 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         billField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        var defaults = NSUserDefaults.standardUserDefaults()
+        let billAmount = billField.text
+        defaults.setObject(billAmount, forKey: "bill_amount")
+        defaults.setDouble(NSDate().timeIntervalSince1970 as Double, forKey: "bill_amount_time")
+        defaults.synchronize()
     }
 }
 
