@@ -11,9 +11,10 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var billField: UITextField!
+    @IBOutlet weak var billField: UITextView!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var bar: UIView!
 
     let TEN_MINUTES = 600.0; //seconds
 
@@ -68,6 +69,12 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         billField.becomeFirstResponder()
+        
+        
+        UIView.animateWithDuration(1, animations: {
+            // This causes first view to fade in and second view to fade out
+            self.bar.frame.size.width = 288
+        })
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -77,6 +84,8 @@ class ViewController: UIViewController {
         defaults.setObject(billAmount, forKey: "bill_amount")
         defaults.setDouble(NSDate().timeIntervalSince1970 as Double, forKey: "bill_amount_time")
         defaults.synchronize()
+        
+        self.bar.frame.size.width = 0
     }
 }
 
