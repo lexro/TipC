@@ -47,11 +47,11 @@ class ViewController: UIViewController {
         let tip = billAmount * tipPercentage
         let totalAmount = billAmount + tip
         
-        tipLabel.text = "$\(tip)"
-        totalLabel.text = "$\(totalAmount)"
-        
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", totalAmount)
+        //format amounts by default user locale
+        var numFormat = NSNumberFormatter();
+        numFormat.numberStyle = .CurrencyStyle
+        tipLabel.text = numFormat.stringFromNumber(tip)
+        totalLabel.text = numFormat.stringFromNumber(totalAmount)
     }
 
     @IBAction func onTap(sender: AnyObject) {
@@ -72,7 +72,6 @@ class ViewController: UIViewController {
         
         
         UIView.animateWithDuration(1, animations: {
-            // This causes first view to fade in and second view to fade out
             self.bar.frame.size.width = 288
         })
     }
