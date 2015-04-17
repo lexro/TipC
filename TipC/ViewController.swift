@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextView!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
-    @IBOutlet weak var bar: UIView!
-
+    @IBOutlet weak var resultsView: UIView!
+    
     let TEN_MINUTES = 600.0; //seconds
 
     override func viewDidLoad() {
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+        billField.text = ""
 
         let defaults = NSUserDefaults.standardUserDefaults()
         let billAmountTime = (NSDate().timeIntervalSince1970 as Double) - defaults.doubleForKey("bill_amount_time")
@@ -32,14 +33,22 @@ class ViewController: UIViewController {
         if (billAmountTime < TEN_MINUTES) {
             billField.text = billAmount
         }
+        
+        let billAmountNumber = billField.text._bridgeToObjectiveC().doubleValue
+        
+        if (billAmountNumber != 0) {
+            showResultsView()
+        } else {
+            showBillView()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func onEditingChanged(sender: AnyObject) {
+    
+    func updateView() {
         let tipPercentages = [0.18, 0.2, 0.22]
         let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         
@@ -54,6 +63,20 @@ class ViewController: UIViewController {
         totalLabel.text = numFormat.stringFromNumber(totalAmount)
     }
 
+    @IBAction func onBillFieldChanged(sender: AnyObject) {
+        let billAmount = billField.text._bridgeToObjectiveC().doubleValue
+        if (billAmount != 0) {
+            showResultsAnimation()
+        } else {
+            showBillAnimation()
+        }
+        updateView()
+    }
+
+    @IBAction func onTipChanged(sender: AnyObject) {
+        updateView()
+    }
+    
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
     }
@@ -69,11 +92,6 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         billField.becomeFirstResponder()
-        
-        
-        UIView.animateWithDuration(1, animations: {
-            self.bar.frame.size.width = 288
-        })
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,8 +101,34 @@ class ViewController: UIViewController {
         defaults.setObject(billAmount, forKey: "bill_amount")
         defaults.setDouble(NSDate().timeIntervalSince1970 as Double, forKey: "bill_amount_time")
         defaults.synchronize()
-        
-        self.bar.frame.size.width = 0
+    }
+    
+    func showBillView() {
+        billField.frame.origin.y = 200
+        tipControl.alpha = 0
+        tipControl.frame.origin.y = 700
+        resultsView.alpha = 0
+        resultsView.frame.origin.y = 700
+    }
+    
+    func showResultsView() {
+        billField.frame.origin.y = 100
+        tipControl.alpha = 1
+        tipControl.frame.origin.y = 170
+        resultsView.alpha = 1
+        resultsView.frame.origin.y = 220
+    }
+    
+    func showResultsAnimation() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.showResultsView()
+        })
+    }
+    
+    func showBillAnimation() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.showBillView()
+        })
     }
 }
 
